@@ -2,7 +2,7 @@ import time
 import sys
 
 class Process:
-    __timePerOneCycle = 0.01#in seconds
+    __timePerOneCycle = 0.6#in seconds
     idCounter = 0
     waitTime = 0
 
@@ -15,9 +15,11 @@ class Process:
     def run(self):
         sys.stdout.write("Running process {}".format(self.id))
         dotsNum = 3
+        time.sleep(float(self.__timePerOneCycle)/(dotsNum + 1))
         for i in range(dotsNum):
-            time.sleep(float(self.__timePerOneCycle)/dotsNum)
             sys.stdout.write('.')
+            sys.stdout.flush()
+            time.sleep(float(self.__timePerOneCycle)/(dotsNum + 1))
         print
         self.cycles -= 1
 
