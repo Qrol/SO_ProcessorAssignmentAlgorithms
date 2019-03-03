@@ -2,7 +2,7 @@ import time
 import sys
 
 class Process:
-    __timePerOneCycle = 0.1#in seconds
+    __timePerOneCycle = 0.01#in seconds
     idCounter = 0
     waitTime = 0
 
@@ -22,7 +22,6 @@ class Process:
         self.cycles -= 1
 
     def wait(self):
-        print(self.id, self.waitTime)
         self.waitTime += 1
 
     def isActive(self):

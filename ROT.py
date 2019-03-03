@@ -7,11 +7,14 @@ class ROT_Scheduler(ProcessesAssignmentAlg):
     def __init__(self, processes, K = 3):
         i = 0
         while len(processes) > 0:
+            self.queryNewProcesses(processes)
+
             process = processes[i]
 
             j = 0
             while j < K and process.isActive():
                 process.run()
+                self.time += 1
                 for p in processes:
                     if(p == process): continue
                     p.wait()
@@ -28,8 +31,9 @@ class ROT_Scheduler(ProcessesAssignmentAlg):
 
         ROT_Scheduler.printStats(self.done)
 
+
 def getExampleProcesses():
-    return [Process(20), Process(5), Process(2)]
+    return [Process(20, 0), Process(5, 0), Process(2, 0), Process(4, 1)]
 
 if __name__ == '__main__':
     ROT_Scheduler(getExampleProcesses())
